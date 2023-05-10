@@ -4,27 +4,27 @@ using namespace std;
 namespace ariel
 {
     int add_overflow_check(int num, int other ) {
-        const int result=num+other;
-        const bool is_pos_overflow = other >0 && num > numeric_limits<int>::max()-other; 
-        const bool is_neg_overflow = other <0 && num < numeric_limits<int>::min()-other;
+        int result=num+other;
+        bool is_pos_overflow = other >0 && num > numeric_limits<int>::max()-other; 
+        bool is_neg_overflow = other <0 && num < numeric_limits<int>::min()-other;
         return (is_pos_overflow || is_neg_overflow)?throw std::overflow_error("add_overflow") : result;  
       } 
 
     int sub_overflow_check(int num, int other ) {
-        const int result=num-other;
-        const bool is_overflow = other<0 && num > (numeric_limits<int>::max()+other) || (other>0 && num <(numeric_limits<int>::min()+other));
+        int result=num-other;
+        bool is_overflow = other<0 && num > (numeric_limits<int>::max()+other) || (other>0 && num <(numeric_limits<int>::min()+other));
         return is_overflow ? throw std::overflow_error("sub_overflow"):result;
       } 
 
     int mult_overflow_check(int num, int other ) {
-        const int result=num*other;
-        const bool is_overflow = other >0 && num > (numeric_limits<int>::max()/other) || (other <0 && num <(numeric_limits<int>::max()/other));
+        int result=num*other;
+        bool is_overflow = other >0 && num > (numeric_limits<int>::max()/other) || (other <0 && num <(numeric_limits<int>::max()/other));
         return is_overflow ? throw std::overflow_error("mult_overflow"):result;
       } 
 
     int div_overflow_check(int num, int other ) {
-        const int result=num/other;
-        const bool is_overflow = (other ==0 || (num ==(numeric_limits<int>::min()) && (other ==-1 ) )) ;
+        int result=num/other;
+        bool is_overflow = (other ==0 || (num ==(numeric_limits<int>::min()) && (other ==-1 ) )) ;
         return is_overflow ? throw std::overflow_error("div_overflow"):result;
         } 
 
